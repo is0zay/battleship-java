@@ -4,11 +4,11 @@ public class Battleship {
     private String shipName;
     private ArrayList<String> locations;
 
-    public void getShipName(String shipName) {
+    public void setShipName(String shipName) {
         this.shipName = shipName;
     }
 
-    public void shipLocations(ArrayList<String> locations) {
+    public void setShipLocations(ArrayList<String> locations) {
         this.locations = locations;
     }
 

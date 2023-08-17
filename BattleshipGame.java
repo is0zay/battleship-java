@@ -7,17 +7,21 @@ public class BattleshipGame {
 
     public void gameSetUp() {
         Battleship ship1 = new Battleship();
-        ship1.getShipName("Test One");
+        ship1.setShipName("Test One");
 
         Battleship ship2 = new Battleship();
-        ship2.getShipName("Test Two");
+        ship2.setShipName("Test Two");
 
         Battleship ship3 = new Battleship();
-        ship3.getShipName("Test Three");
+        ship3.setShipName("Test Three");
 
         ships.add(ship1);
         ships.add(ship2);
         ships.add(ship3);
+
+        ship1.setShipLocations(helper.placeStartup(3));
+        ship2.setShipLocations(helper.placeStartup(3));
+        ship3.setShipLocations(helper.placeStartup(3));
 
         System.out.println("Game is ready to play");
 
@@ -27,6 +31,10 @@ public class BattleshipGame {
         while(!ships.isEmpty()) {
             String userGuess = helper.getUserInput("Guess the ship location");
             guessChecker(userGuess);
+        }
+
+        if (ships.isEmpty()) {
+            endGame();
         }
     }
 
