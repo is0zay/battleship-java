@@ -1,12 +1,13 @@
 import java.util.ArrayList;
 
 public class BattleshipGame {
-    private ArrayList<Battleship> ships = new ArrayList<>();
-    private GameHelper helper = new GameHelper();
-    int guessNumber = 0;
+    private ArrayList<Battleship> ships = new ArrayList<>();	// Array that contains ships, to keep track of remaining ships
+    private GameHelper helper = new GameHelper();		// uses object to access GameHelper properties and methods
+    int guessNumber = 0;		// variable to track number of guesses
 
     public void gameSetUp() {
-        Battleship ship1 = new Battleship();
+		// naming the ships
+        Battleship ship1 = new Battleship();	
         ship1.setShipName("Test One");
 
         Battleship ship2 = new Battleship();
@@ -15,10 +16,12 @@ public class BattleshipGame {
         Battleship ship3 = new Battleship();
         ship3.setShipName("Test Three");
 
+		// adding the ships to the array
         ships.add(ship1);
         ships.add(ship2);
         ships.add(ship3);
 
+		// use set ship location to randomly place the ship
         ship1.setShipLocations(helper.placeStartup(3));
         ship2.setShipLocations(helper.placeStartup(3));
         ship3.setShipLocations(helper.placeStartup(3));
@@ -27,21 +30,26 @@ public class BattleshipGame {
 
     }
 
-    public void startGame() {
+	//methid to start the gameplay
+    public void startGame() {	
+		// run while ships still remain in array
         while(!ships.isEmpty()) {
             String userGuess = helper.getUserInput("Guess the ship location");
             guessChecker(userGuess);
         }
 
+		// if no ships are remaining, end the game
         if (ships.isEmpty()) {
             endGame();
         }
     }
 
+	// method that runs when guess is input buy the user
     private void guessChecker(String userGuess) {
-        guessNumber ++;
+        guessNumber ++;		// increase the guess counter by one when a guess is added
         String result = "miss";
 
+		// iterate through ships array
         for(Battleship ship : ships) {
             result = ship.guessResult(userGuess);
             if (result.equals("hit") || result.equals("sunk")) {
